@@ -1,0 +1,39 @@
+<div class="content">
+    <?php View::content() ?>
+
+
+    <div class="barraCategoria">
+        <h3 class="tituloCategoria">Pilotos</h3>
+        <i class="fa fa-plus-circle icono-categoria" aria-hidden="true"><?= Html::linkAction("alta/", ' Nuevo') ?></i>
+    </div>
+
+    <table>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>DNI</th>
+        <th>Fecha Nac.</th>
+        <th>Vencimiento Licencia</th>
+        <th>Categoría</th>
+        <th>Instructor</th>
+        <th>Cantidad de Horas Voladas</th>
+        <th colspan="2">Acciones</th>
+        <?php foreach ($listPiloto->items as $Piloto) : ?>
+            <tr>
+                <td><strong><?= $Piloto->nombre ?> </strong></td>
+                <td><strong> <?= $Piloto->apellido ?> </strong></td>
+                <td><strong> <?= $Piloto->dni ?> </strong></td>
+                <td><strong> <?= $Piloto->fecha_nacimiento ?> </strong></td>
+                <td><strong> <?= $Piloto->fecha_vencimiento_licencia ?> </strong></td>
+                <td><strong> <?= $Piloto->categoria ?> </strong></td>
+                <td><strong> <?= ($Piloto->es_instructor) ? "Sí" : "No" ?> </strong></td>
+                <td><strong> <?= $Piloto->cantidad_horas_voladas_piloto ?> </strong></td>
+                <td><?= Html::linkAction("modif/$Piloto->id/", 'Editar') ?> </td>
+                <td><?= Html::linkAction("baja/$Piloto->id/", 'Borrar') ?> </td>
+            </tr>
+        <?php endforeach ?>
+    </table>
+
+    <!-- ejemplo manual de paginador, hay partial listos en formato digg, clasic,.... -->
+    <?php if ($listPiloto->prev) echo Html::linkAction("index/$listPiloto->prev/", '<< Anterior |') ?>
+    <?php if ($listPiloto->next) echo Html::linkAction("index/$listPiloto->next/", 'Próximo >>') ?>
+</div>

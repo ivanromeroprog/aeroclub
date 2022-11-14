@@ -1,0 +1,69 @@
+<div class="content">
+    <?php View::content() ?>
+    <?php
+    Tag::css('empresa');     //Pone en lista un CSS (app/public/css/bienvenida.css)
+    echo  Html::includeCss();   //Adiciona los recursos enlazados de la clase en el proyecto  
+
+    //        $cliente = new Cliente;
+    //        
+    //        $unCliente = $cliente->getCliente($id);
+
+
+    $arrayProductos =  array();
+    foreach ($listaProductos as $producto)  //armo un array con formato adecuado para cargar el select que voy a usar en la grilla
+    {
+        $arrayProductos[$producto->id] = $producto->nombre;
+    }
+
+    ?>
+
+    <h4>Orden Nro: <strong><?php
+                            echo $nro_orden;
+                            ?></strong>
+    </h4>
+
+    <table style="text-align: center;">
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th colspan="1">Acciones</th>
+
+        <!-- Cargo la lista de productos de la orden -->
+        <?php foreach ($listProductoOrden as $productoOrden) : ?>
+            <tr>
+                <td><strong><?= $productoOrden->id ?> </strong> </td>
+                <td><strong><?= $productoOrden->nombre ?> </strong> </td>
+                <td><strong><?= $productoOrden->precio ?> </strong> </td>
+                <td><?= Html::linkAction("bajadetalle/$nro_orden/$productoOrden->id_detalle_producto_orden", 'Borrar') ?></td>
+
+            </tr>
+        <?php endforeach ?>
+        <tr>
+            <!--  -->
+            <td></td>
+            <td>Total</td>
+            <td> <?= $totalOrden ?></td>
+            <td></td>
+        </tr>
+        <tr>
+            <!--  -->
+            <td></td> <!-- primera celda vacía -->
+            <?= Form::open('orden/agregarProducto/' . $nro_orden); // por defecto llama a la misma url 
+            ?>
+            <td><?= Form::select('productos', $arrayProductos) ?></td>
+            <td>
+                <!-- Celda de precio vacía -->
+            </td>
+            <td><?= Form::submit('Agregar Producto') ?></td>
+            <?= Form::close() ?>
+        </tr>
+    </table>
+    <br>
+
+
+
+
+
+    <!-- ejemplo manual de paginador, hay partial listos en formato digg, clasic,.... -->
+
+</div>

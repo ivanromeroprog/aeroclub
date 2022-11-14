@@ -1,0 +1,21 @@
+<div class="content">
+        <?php View::content() ?>
+        <h3>Editar piloto</h3>
+
+
+        <?= Form::open(); // por defecto llama a la misma url 
+        ?>
+
+        <label>Nombre
+                <?= Form::text('piloto.nombre') ?></label>
+
+        <label>Precio
+                <?= Form::text('piloto.precio') ?></label>
+
+
+
+        <?= Form::hidden('piloto.id') ?>
+        <?= Form::submit('Actualizar') ?>
+
+        <?= Form::close() ?>
+</div>

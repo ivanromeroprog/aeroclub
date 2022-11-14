@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset=<?= APP_CHARSET ?>>
+  <title>Código Base TUIG</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <?php Tag::css('kumbia') ?>
+  <?= Html::includeCss() ?>
+  <?php
+  Tag::css('empresa');     //Pone en lista un CSS (app/public/css/empresa.css)
+  echo  Html::includeCss();   //Adiciona los recursos enlazados de la clase en el proyecto  
+
+  Tag::css('fontawesome/css/all');     //Pone en lista un CSS (app/public/css/empresa.css)
+  echo  Html::includeCss()
+  ?>
+</head>
+
+<body>
+  <div class="container">
+    <header class="row">
+      <div class="col-8">
+        <?= Html::link('', Html::img('kumbiaphp.svg', 'KumbiaPHP logo'), 'title="Inicio"') ?>
+      </div>
+      <div class="col-4 text-right">
+        App: <strong><?= basename(dirname(APP_PATH)) ?></strong> (<?= PRODUCTION ? 'Production' : 'Development' ?>)
+      </div>
+    </header>
+
+    <h4>MENÚ IMPLEMENTADO - PROGRAMACIÓN II</h4>
+    <nav class="menuTop">
+      <a href="/aeroclub/"><i class="fa fa-home" aria-hidden="true"></i></a> |
+      <a href="/aeroclub/piloto">ABM Pilotos</a> |
+      <a href="/aeroclub/aeronave">ABM Aeronaves</a> |
+      <a href="/aeroclub/alumno">ABM Alumnos</a> |
+    </nav>
+
+    <?php View::content() ?>
+    <?php View::partial('kumbia/footer') ?>
+  </div>
+</body>
+
+</html>

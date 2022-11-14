@@ -1,0 +1,36 @@
+<div class="content">
+ 
+    <?php View::content() ?>
+    <?php 
+        Tag::css ('empresa');     //Pone en lista un CSS (app/public/css/bienvenida.css)
+        echo  Html::includeCss();   //Adiciona los recursos enlazados de la clase en el proyecto  
+    ?>
+    <div class="barraCategoria">
+        <h3 class="tituloCategoria">Clientes</h3>
+        <i class="fa fa-plus-circle icono-categoria"  aria-hidden="true"><?= Html::linkAction("alta/", ' Nuevo') ?></i>
+    </div>
+ 
+    <table style="text-align: center;  border: 1px solid black;  border-collapse: collapse;">
+ 
+        <th>Nombre, Apellido</th>
+        <th>DNI</th>
+        <th colspan="2">Acciones</th>
+        <th> Ordenes</th>
+ 
+        <?php foreach ($listCliente->items as $cliente) : ?>
+ 
+                <tr>
+ 
+                    <td><strong><?= $cliente->nombre ?> , <?= $cliente->apellido ?></strong> </td>
+                    <td><strong><?= $cliente->dni ?></strong> </td>
+                    <td>	<?= Html::linkAction("modif/$cliente->id/", 'Editar') ?></td>
+                    <td>        <?= Html::linkAction("baja/$cliente->id/", 'Borrar') ?></td>
+                    <td>        <?= Html::linkAction("baja/$cliente->id/", 'Borrar') ?></td>
+
+                    <td>        <?= Html::linkAction("../orden/getOrdenCliente/$cliente->id/", 'Lista de Ordenes') ?></td>
+                </tr>
+        <?php endforeach ?>
+    </table>
+ 
+ 
+</div>

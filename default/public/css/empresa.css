@@ -1,0 +1,39 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 24 ago. 2022, 12:20:52
+    Author     : jbacigalupo
+*/
+
+table, th, td
+{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.menuTop
+{
+    font-family: sans-serif;
+    font-size: 1em;
+    border-bottom: 1px solid #ccc;
+}
+
+.barraCategoria
+{
+    display: flex;
+    line-height: 60px;
+}
+
+.tituloCategoria
+{
+    min-width: 140px;
+}
+
+.icono-categoria
+{
+    vertical-align: middle;
+    margin-top: 32px;
+    margin-left: 32px;
+}

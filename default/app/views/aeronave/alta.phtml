@@ -1,0 +1,23 @@
+<div class="content">
+        <?php View::content() ?>
+        <h3>Alta de aeronaves</h3>
+
+        <?= Form::open(); // por defecto llama a la misma url 
+        ?>
+
+        <label>Marca
+                <?= Form::text('Aeronaves.marca') ?></label>
+
+        <label>Modelo
+                <?= Form::text('Aeronaves.modelo') ?></label>
+        <label>Fecha de Fabricación
+                <?= Form::date('Aeronaves.fechaFabricacion') ?></label>
+        <label>Matricula
+                <?= Form::text('Aeronaves.matricula') ?></label>
+
+
+
+        <?= Form::submit('Agregar') ?>
+
+        <?= Form::close() ?>
+</div>

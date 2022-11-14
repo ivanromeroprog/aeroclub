@@ -1,0 +1,18 @@
+<div class="content">
+<?php View::content() ?>
+<h3>Alta de Productos</h3>
+
+<?= Form::open(); // por defecto llama a la misma url ?>
+        
+        <label>Nombre
+        <?= Form::text('productos.nombre') ?></label>
+        
+        <label>Precio
+        <?= Form::text('productos.precio') ?></label>
+		
+		
+
+        <?= Form::submit('Agregar') ?>
+
+<?= Form::close() ?>
+</div>

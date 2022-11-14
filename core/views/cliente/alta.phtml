@@ -1,0 +1,20 @@
+<div class="content">
+
+<?php View::content() ?>
+<h3>Alta de cliente<h3>
+ 
+<?= Form::open(); // por defecto llama a la misma url ?>
+ 
+        <label>Nombre
+        <?= Form::text('clientes.nombre') ?></label>
+ 
+        <label>Apellido
+        <?= Form::text('clientes.apellido') ?></label>
+ 
+		<label>DNI
+        <?= Form::text('clientes.dni') ?></label>
+ 
+        <?= Form::submit('Agregar') ?>
+ 
+<?= Form::close() ?>
+</div>

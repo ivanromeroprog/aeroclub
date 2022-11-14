@@ -1,0 +1,12 @@
+<footer>
+    <div class="col-6">
+        <ul class="inline" >
+        	<li><a href='http://www.fich.unl.edu.ar/#&panel1-1/'>FICH - UNL</a> |</li> 
+        	<li><a href='https://github.com/KumbiaPHP/Documentation/tree/master/es'>Manual Kumbia</a> |</li>
+        	<li><a href='https://wiki.kumbiaphp.com/'>Wiki Kumbia</a> |</li>
+           
+        </ul>
+    </div>
+    
+    <div class="col-12 text-center"> <?= 'Ejecutado en ', round((microtime(1) - $_SERVER['REQUEST_TIME_FLOAT']) * 1000, 4), ' ms. usando ', number_format(memory_get_usage() / 1048576, 3), ' MB de memoria'; ?></div>
+</footer>

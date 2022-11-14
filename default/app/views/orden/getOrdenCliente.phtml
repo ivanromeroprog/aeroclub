@@ -1,0 +1,36 @@
+<div class="content">
+    <?php View::content() ?>
+    <?php 
+        Tag::css ('empresa');     //Pone en lista un CSS (app/public/css/bienvenida.css)
+        echo  Html::includeCss();   //Adiciona los recursos enlazados de la clase en el proyecto  
+        
+        $cliente = new Cliente;
+        
+        $unCliente = $cliente->getCliente($id);
+    ?>
+    <h4>Ordenes del Cliente:  <strong><?php 
+            echo $unCliente->apellido .", ". $unCliente->nombre;
+            
+        ?></strong>
+    </h4>
+    
+    <table style="text-align: center;">
+            <th>ID</th>
+            <th>Nro Orden</th>
+            <th colspan="2">Acciones</th>
+        
+    <?php foreach ($listProductoOrden as $productoOrden) : ?>
+    <tr>
+        
+        <td><strong><?= $productoOrden->id ?> </strong> </td>
+        <td><strong><?= $productoOrden->nro_orden ?> </strong> </td>
+        
+	<td><?= Html::linkAction("verOrden/$productoOrden->nro_orden/", 'Ver') ?></td>	
+        <td><?= Html::linkAction("baja/$productoOrden->nro_orden/", 'Borrar') ?></td>
+    </tr>
+    <?php endforeach ?>
+    </table>
+    
+     <!-- ejemplo manual de paginador, hay partial listos en formato digg, clasic,.... -->
+    
+</div>

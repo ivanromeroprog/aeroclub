@@ -1,0 +1,20 @@
+<div class="content">
+<?php View::content() ?>
+<h3>Editar Producto</h3>
+
+
+<?= Form::open(); // por defecto llama a la misma url ?>
+
+        <label>Nombre
+        <?= Form::text('producto.nombre') ?></label>
+
+        <label>Precio
+        <?= Form::text('producto.precio') ?></label>
+		
+		
+
+        <?= Form::hidden('producto.id') ?>
+        <?= Form::submit('Actualizar') ?>
+
+<?= Form::close() ?>
+</div>

@@ -1,0 +1,26 @@
+<div class="content">
+        <?php View::content() ?>
+        <h3>Editar Alumno:</h3>
+
+
+        <?= Form::open(); // por defecto llama a la misma url 
+        ?>
+
+        <label>Nombre
+                <?= Form::text('alumno.nombre') ?></label>
+        <label>Apellido
+                <?= Form::text('alumno.apellido') ?></label>
+        <label>DNI
+                <?= Form::text('alumno.dni') ?></label>
+        <label>Fecha de Nacimiento
+                <?= Form::date('alumno.fechaNacimiento') ?></label>
+        <label>Fecha de Inicio de Curso
+                <?= Form::date('alumno.fechaInicioCurso') ?></label>
+        <label>Cantidad de Horas Voladas Alumno
+                <?= Form::text('alumno.cantidadHorasVoladasAlumno ') ?></label>
+
+        <?= Form::hidden('aeronave.id') ?>
+        <?= Form::submit('Actualizar') ?>
+
+        <?= Form::close() ?>
+</div>

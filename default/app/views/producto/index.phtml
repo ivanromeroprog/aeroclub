@@ -1,0 +1,27 @@
+<div class="content">
+    <?php View::content() ?>
+     
+            
+    <div class="barraCategoria">
+        <h3 class="tituloCategoria">Productos</h3>
+        <i class="fa fa-plus-circle icono-categoria"  aria-hidden="true"><?= Html::linkAction("alta/", ' Nuevo') ?></i>
+    </div>
+    
+    <table>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th colspan="2">Acciones</th>
+        <?php foreach ($listProducto->items as $producto) : ?>
+            <tr>
+                <td><strong><?= $producto->nombre ?> </strong></td> 
+                <td><strong> $<?= $producto->precio ?> </strong>
+                <td><?= Html::linkAction("modif/$producto->id/", 'Editar') ?> </td>
+                <td><?= Html::linkAction("baja/$producto->id/", 'Borrar') ?> </td>
+            </tr>
+        <?php endforeach ?>
+    </table>
+    
+     <!-- ejemplo manual de paginador, hay partial listos en formato digg, clasic,.... -->
+    <?php if($listProducto->prev) echo Html::linkAction("index/$listProducto->prev/", '<< Anterior |') ?>
+    <?php if($listProducto->next) echo Html::linkAction("index/$listProducto->next/", 'Próximo >>') ?>
+</div>
