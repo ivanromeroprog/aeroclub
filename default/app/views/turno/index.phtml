@@ -1,0 +1,31 @@
+<div class="content">
+    <?php View::content() ?>
+
+
+    <div class="barraCategoria">
+        <h3 class="tituloCategoria">Turnos</h3>
+        <i class="fa fa-plus-circle icono-categoria" aria-hidden="true"><?= Html::linkAction("alta/", ' Nuevo') ?></i>
+    </div>
+
+    <table>
+        <th>Marca</th>
+        <th>Modelo</th>
+        <th>Fecha de Fabricación</th>
+        <th>Matricula</th>
+        <th colspan="2">Acciones</th>
+        <?php foreach ($listTurno->items as $Turno) : ?>
+            <tr>
+                <td><strong><?= $Turno->marca ?> </strong></td>
+                <td><strong> <?= $Turno->modelo ?> </strong></td>
+                <td><strong> <?= date('d/m/Y', strtotime($Turno->fechaFabricacion)); ?> </strong></td>
+                <td><strong> <?= $Turno->matricula ?> </strong></td>
+                <td><?= Html::linkAction("modif/$Turno->id/", 'Editar') ?> </td>
+                <td><?= Html::linkAction("baja/$Turno->id/", 'Borrar') ?> </td>
+            </tr>
+        <?php endforeach ?>
+    </table>
+
+    <!-- ejemplo manual de paginador, hay partial listos en formato digg, clasic,.... -->
+    <?php if ($listAeronave->prev) echo Html::linkAction("index/$listAeronave->prev/", '<< Anterior |') ?>
+    <?php if ($listAeronave->next) echo Html::linkAction("index/$listAeronave->next/", 'Próximo >>') ?>
+</div>

@@ -15,16 +15,16 @@
         <th>Fecha Inicio Curso</th>
         <th>Cantidad de Horas Voladas Alumno</th>
         <th colspan="2">Acciones</th>
-        <?php foreach ($listAlumno->items as $alumno) : ?>
+        <?php foreach ($listAlumno->items as $Alumno) : ?>
             <tr>
-                <td><strong><?= $alumno->nombre ?> </strong></td>
-                <td><strong> <?= $alumno->apellido ?> </strong></td>
-                <td><strong> <?= $alumno->dni ?> </strong></td>
-                <td><strong> <?= $alumno->fechaNacimiento?> </strong></td>
-                <td><strong> <?= $alumno->fechaInicioCurso ?> </strong></td>
-                <td><strong> <?= $alumno->cantidadHorasVoladasAlumno  ?> </strong></td>
-                <td><?= Html::linkAction("modif/$alumno->id/", 'Editar') ?> </td>
-                <td><?= Html::linkAction("baja/$alumno->id/", 'Borrar') ?> </td>
+                <td><strong><?= $Alumno->nombre ?> </strong></td>
+                <td><strong> <?= $Alumno->apellido ?> </strong></td>
+                <td><strong> <?= $Alumno->dni ?> </strong></td>
+                <td><strong> <?= $Alumno->fechaNacimiento?> </strong></td>
+                <td><strong> <?= $Alumno->fechaInicioCurso ?> </strong></td>
+                <td><strong> <?= $Alumno->cantidad_horas_voladas_alumno  ?> </strong></td>
+                <td><?= Html::linkAction("modif/$Alumno->id/", 'Editar') ?> </td>
+                <td><?= Html::linkAction("baja/$Alumno->id/", 'Borrar') ?> </td>
             </tr>
         <?php endforeach ?>
     </table>

@@ -1,20 +1,30 @@
 <div class="content">
         <?php View::content() ?>
-        <h3>Editar piloto</h3>
+        <h3>Editar Pilotos</h3>
 
 
         <?= Form::open(); // por defecto llama a la misma url 
         ?>
-
         <label>Nombre
-                <?= Form::text('piloto.nombre') ?></label>
+                <?= Form::text('Pilotos.nombre') ?></label>
 
-        <label>Precio
-                <?= Form::text('piloto.precio') ?></label>
+        <label>Apellido
+                <?= Form::text('Pilotos.apellido') ?></label>
+        <label>DNI
+                <?= Form::text('Pilotos.dni') ?></label>
+        <label>Fecha de Nacimiento
+                <?= Form::date('Pilotos.fecha_nacimiento') ?></label>
+        <label>Vencimiento de Licencia
+                <?= Form::date('Pilotos.fecha_vencimiento_licencia') ?></label>
+        <label>Categoria
+                <?= Form::text('Pilotos.categoria') ?></label>
+        <label>Instructor
+                <?= Form::text('Pilotos.es_instructor') ?></label>
+        <label>Cantidad de Horas voladas
+                <?= Form::text('Pilotos.cantidad_horas_voladas_piloto') ?></label>
 
 
-
-        <?= Form::hidden('piloto.id') ?>
+        <?= Form::hidden('Pilotos.id') ?>
         <?= Form::submit('Actualizar') ?>
 
         <?= Form::close() ?>

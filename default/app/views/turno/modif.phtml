@@ -1,0 +1,23 @@
+<div class="content">
+        <?php View::content() ?>
+        <h3>Editar Turno</h3>
+
+
+        <?= Form::open(); // por defecto llama a la misma url 
+        ?>
+
+        <label>Marca
+                <?= Form::text('Turnos.marca') ?></label>
+
+        <label>Modelo
+                <?= Form::text('Turnos.modelo') ?></label>
+        <label>Fecha de Fabricación
+                <?= Form::date('Turnos.fechaFabricacion') ?></label>
+        <label>Matricula
+                <?= Form::text('Turnos.matricula') ?></label>
+
+        <?= Form::hidden('Turnos.id') ?>
+        <?= Form::submit('Actualizar') ?>
+
+        <?= Form::close() ?>
+</div>
