@@ -5,16 +5,18 @@
 
         <?= Form::open(); // por defecto llama a la misma url 
         ?>
-
-        <label>Marca
-                <?= Form::text('Turnos.marca') ?></label>
-
-        <label>Modelo
-                <?= Form::text('Turnos.modelo') ?></label>
-        <label>Fecha de Fabricación
-                <?= Form::date('Turnos.fechaFabricacion') ?></label>
-        <label>Matricula
-                <?= Form::text('Turnos.matricula') ?></label>
+        <label> Alumno o Piloto
+                <?= Form::number('Turnos.id_piloto') ?></label>
+        <label> Aeronave
+                <?= Form::number('Turnos.id_aeronave') ?></label>
+        <label>Categoria
+                <?= Form::text('Turnos.categoria') ?></label>
+        <label>Hora de Inicio
+                <?= Form::time('Turnos.hora_inicio') ?></label>
+        <label>Hora de Fin
+                <?= Form::time('Turnos.hora_fin') ?></label>
+        <label>Duracion
+                <?= Form::number('Turnos.duracion') ?></label>
 
         <?= Form::hidden('Turnos.id') ?>
         <?= Form::submit('Actualizar') ?>

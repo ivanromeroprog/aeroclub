@@ -8,17 +8,21 @@
     </div>
 
     <table>
-        <th>Marca</th>
-        <th>Modelo</th>
-        <th>Fecha de Fabricación</th>
-        <th>Matricula</th>
+        <th>Alumno o Piloto</th>
+        <th>ID Aeronave</th>
+        <th>Categoria</th>
+        <th>Hora de Inicio</th>
+        <th>Hora de Fin</th>
+        <th>Duracion</th>
         <th colspan="2">Acciones</th>
         <?php foreach ($listTurno->items as $Turno) : ?>
             <tr>
-                <td><strong><?= $Turno->marca ?> </strong></td>
-                <td><strong> <?= $Turno->modelo ?> </strong></td>
-                <td><strong> <?= date('d/m/Y', strtotime($Turno->fechaFabricacion)); ?> </strong></td>
-                <td><strong> <?= $Turno->matricula ?> </strong></td>
+                <td><strong><?= $Turno->Alumno ?> </strong></td>
+                <td><strong> <?= $Turno->id_aeronave ?> </strong></td>
+                <td><strong> <?= $Turno->categoria ?> </strong></td>
+                <td><strong> <?= $Turno->hora_inicio ?> </strong></td>
+                <td><strong> <?= $Turno->hora_fin ?> </strong></td>
+                <td><strong> <?= $Turno->duracion ?> </strong></td>
                 <td><?= Html::linkAction("modif/$Turno->id/", 'Editar') ?> </td>
                 <td><?= Html::linkAction("baja/$Turno->id/", 'Borrar') ?> </td>
             </tr>
@@ -26,6 +30,6 @@
     </table>
 
     <!-- ejemplo manual de paginador, hay partial listos en formato digg, clasic,.... -->
-    <?php if ($listAeronave->prev) echo Html::linkAction("index/$listAeronave->prev/", '<< Anterior |') ?>
-    <?php if ($listAeronave->next) echo Html::linkAction("index/$listAeronave->next/", 'Próximo >>') ?>
+    <?php if ($listTurno->prev) echo Html::linkAction("index/$listTurno->prev/", '<< Anterior |') ?>
+    <?php if ($listTurno->next) echo Html::linkAction("index/$listTurno->next/", 'Próximo >>') ?>
 </div>

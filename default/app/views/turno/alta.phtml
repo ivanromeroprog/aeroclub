@@ -6,16 +6,17 @@
         ?>
 
         <label> Alumno o Piloto
-                <?= Form::text('Turnos.marca') ?></label>
-
+                <?= Form::number('Turnos.id_piloto') ?></label>
+        <label> Aeronave
+                <?= Form::number('Turnos.id_aeronave') ?></label>
         <label>Categoria
                 <?= Form::text('Turnos.categoria') ?></label>
         <label>Hora de Inicio
-                <?= Form::date('Turnos.hora_inicio') ?></label>
+                <?= Form::time('Turnos.hora_inicio') ?></label>
         <label>Hora de Fin
-                <?= Form::text('Turnos.hora_fin') ?></label>
-
-
+                <?= Form::time('Turnos.hora_fin') ?></label>
+        <label>Duracion
+                <?= Form::number('Turnos.duracion') ?></label>
 
         <?= Form::submit('Agregar') ?>
 
