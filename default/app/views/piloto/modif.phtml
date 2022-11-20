@@ -2,7 +2,6 @@
         <?php View::content() ?>
         <h3>Editar Pilotos</h3>
 
-
         <?= Form::open(); // por defecto llama a la misma url 
         ?>
         <label>Nombre
@@ -17,11 +16,12 @@
         <label>Vencimiento de Licencia
                 <?= Form::date('Pilotos.fecha_vencimiento_licencia') ?></label>
         <label>Categoria
-                <?= Form::text('Pilotos.categoria') ?></label>
-        <label>Instructor
-                <?= Form::text('Pilotos.es_instructor') ?></label>
+
+                <?= Form::select('Pilotos.categoria', $categorias) ?></label>
+        <label>Es instructor
+                <?= Form::check('Pilotos.es_instructor', 1, null, ($Pilotos->es_instructor == 1)) ?></label>
         <label>Cantidad de Horas voladas
-                <?= Form::text('Pilotos.cantidad_horas_voladas_piloto') ?></label>
+                <?= Form::number('Pilotos.cantidad_horas_voladas_piloto') ?></label>
 
 
         <?= Form::hidden('Pilotos.id') ?>

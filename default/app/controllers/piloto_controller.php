@@ -20,6 +20,10 @@ class PilotoController extends AppController
      */
     public function alta()
     {
+
+        //Establecer lista de categorías
+        $this->categorias = ['PPL' => 'PPL', 'PPA' => 'PPA', 'PCA' => 'PCA'];
+
         /**
          * Se verifica si el usuario envío el form (submit) y si además
          * dentro del array POST existe uno llamado "Pilotos"
@@ -38,10 +42,11 @@ class PilotoController extends AppController
                 Flash::valid('Operación exitosa');
                 //Eliminamos el POST, si no queremos que se vean en el form
                 Input::delete();
-                return;
+                //return;
+            } else {
+                Flash::error('Falló Operación');
+                //return;
             }
-
-            Flash::error('Falló Operación');
         }
     }
 
@@ -54,23 +59,26 @@ class PilotoController extends AppController
     {
         $Piloto = new Piloto();
 
+        //Establecer lista de categorías
+        $this->categorias = ['PPL' => 'PPL', 'PPA' => 'PPA', 'PCA' => 'PPA'];
+
+        //Aplicando la autocarga de objeto, para comenzar la edición
+        //Si en la vista usamos Pilotos.nombre, la autocarga buscará una variable llamada $Pilotos
+        //para apoyar los helpers de Form
+        $this->Pilotos = $Piloto->find_by_id((int) $id);
+
         //se verifica si se ha enviado el formulario (submit)
         if (Input::hasPost('Pilotos')) {
 
             if ($Piloto->update(Input::post('Pilotos'))) {
                 Flash::valid('Operación exitosa');
                 //enrutando por defecto al index del controller
-                return Redirect::to();
+                //return Redirect::to();
+            } else {
+                Flash::error('Falló Operación');
+                //return;
             }
-            Flash::error('Falló Operación');
-            return;
         }
-
-
-        //Aplicando la autocarga de objeto, para comenzar la edición
-        //Si en la vista usamos Pilotos.nombre, la autocarga buscará una variable llamada $Pilotos
-        //para apoyar los helpers de Form
-        $this->Pilotos = $Piloto->find_by_id((int) $id);
     }
 
     /**

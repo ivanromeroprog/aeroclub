@@ -1,4 +1,5 @@
 <?php
+
 /**
  * KumbiaPHP web & app Framework
  *
@@ -20,7 +21,7 @@
  * @package    Redirect
  */
 class Redirect
-{   
+{
 
     /**
      * Redirecciona la ejecución a otro controlador en un
@@ -42,7 +43,7 @@ class Redirect
             header("Refresh: $seconds; url=$route");
             return;
         }
-        header('Location: '.$route, TRUE, $statusCode);
+        header('Location: ' . $route, TRUE, $statusCode);
         $_SESSION['KUMBIA.CONTENT'] = ob_get_clean();
         View::select(null, null);
     }
@@ -76,7 +77,7 @@ class Redirect
         $default = array('controller' => 'index', 'action' => 'index');
 
         $url['parameters'] = isset($url['parameters']) ? explode('/', $url['parameters']) : array();
-        
+
         if (isset($url['module'])) {
             $vars = $url + $default;
             $vars['controller_path'] = $vars['module'] . '/' . $vars['controller'];
@@ -86,7 +87,7 @@ class Redirect
         } else {
             $vars = $url;
         }
-        
+
         if (++$cyclic > 1000)
             throw new KumbiaException('Se ha detectado un enrutamiento cíclico. Esto puede causar problemas de estabilidad');
 
@@ -100,7 +101,8 @@ class Redirect
      * 
      * @return void
      */
-    public static function route_to() {
+    public static function route_to()
+    {
         self::internal(func_get_args());
     }
 }

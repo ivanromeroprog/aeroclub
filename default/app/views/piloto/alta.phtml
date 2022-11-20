@@ -17,13 +17,11 @@
         <label>Vencimiento de Licencia
                 <?= Form::date('Pilotos.fecha_vencimiento_licencia') ?></label>
         <label>Categoria
-        <?php foreach ($listPiloto->items as $Piloto) :?>
-                <?= Form::select('Pilotos.categoria',  $Piloto->categoria) ?></label>
-                <?php     endforeach ?>
-        <label>Instructor
-                <?= Form::text('Pilotos.es_instructor') ?></label>
+                <?= Form::select('Pilotos.categoria', $categorias) ?></label>
+        <label>Es instructor
+                <?= Form::check('Pilotos.es_instructor', true) ?></label>
         <label>Cantidad de Horas voladas
-                <?= Form::text('Pilotos.cantidad_horas_voladas_piloto') ?></label>
+                <?= Form::number('Pilotos.cantidad_horas_voladas_piloto') ?></label>
 
 
 

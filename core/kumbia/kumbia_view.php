@@ -1,4 +1,5 @@
 <?php
+
 /**
  * KumbiaPHP web & app Framework
  *
@@ -127,7 +128,7 @@ class KumbiaView
      */
     public static function setPath($path)
     {
-        self::$_path = $path.'/';
+        self::$_path = $path . '/';
     }
 
     /**
@@ -138,10 +139,10 @@ class KumbiaView
     public static function getPath()
     {
         if (self::$_response) {
-            return self::$_path.self::$_view.'.'.self::$_response.'.phtml';
+            return self::$_path . self::$_view . '.' . self::$_response . '.phtml';
         }
 
-        return self::$_path.self::$_view.'.phtml';
+        return self::$_path . self::$_view . '.phtml';
     }
 
     /**
@@ -201,10 +202,10 @@ class KumbiaView
      */
     protected static function getView()
     {
-        $file = APP_PATH.'views/'.self::getPath();
+        $file = APP_PATH . 'views/' . self::getPath();
         //Si no existe el view y es scaffold
         if (!is_file($file) && ($scaffold = self::$_controller['scaffold'])) {
-            $file = APP_PATH."views/_shared/scaffolds/$scaffold/".self::$_view.'.phtml';
+            $file = APP_PATH . "views/_shared/scaffolds/$scaffold/" . self::$_view . '.phtml';
         }
 
         return $file;
@@ -237,7 +238,7 @@ class KumbiaView
         if (!self::$_view && !self::$_template) {
             ob_end_flush();
 
-            return; 
+            return;
         }
 
         // Guarda los datos del controlador y los envia
@@ -267,7 +268,7 @@ class KumbiaView
 
             // carga la vista
             if (!include self::getView()) {
-                throw new KumbiaException('Vista "'.self::getPath().'" no encontrada', 'no_view');
+                throw new KumbiaException('Vista "' . self::getPath() . '" no encontrada', 'no_view');
             }
 
             // si esta en produccion y se cachea la vista
@@ -288,7 +289,7 @@ class KumbiaView
             ob_start();
 
             // carga el template
-            if (!include APP_PATH."views/_shared/templates/$__template.phtml") {
+            if (!include APP_PATH . "views/_shared/templates/$__template.phtml") {
                 throw new KumbiaException("Template $__template no encontrado");
             }
 
@@ -309,6 +310,7 @@ class KumbiaView
      */
     public static function content()
     {
+        //var_dump($_SESSION['KUMBIA.CONTENT']);
         if (isset($_SESSION['KUMBIA.CONTENT'])) {
             echo $_SESSION['KUMBIA.CONTENT'];
             unset($_SESSION['KUMBIA.CONTENT']);
@@ -333,11 +335,11 @@ class KumbiaView
         }
 
         //Verificando el partials en el dir app
-        $__file = APP_PATH."views/_shared/partials/$partial.phtml";
+        $__file = APP_PATH . "views/_shared/partials/$partial.phtml";
 
         if (!is_file($__file)) {
             //Verificando el partials en el dir core
-            $__file = CORE_PATH."views/partials/$partial.phtml";
+            $__file = CORE_PATH . "views/partials/$partial.phtml";
         }
 
         if ($params) {
@@ -351,7 +353,7 @@ class KumbiaView
 
         // carga la vista parcial
         if (!include $__file) {
-            throw new KumbiaException('Vista Parcial "'.$__file.'" no encontrada', 'no_partial');
+            throw new KumbiaException('Vista Parcial "' . $__file . '" no encontrada', 'no_partial');
         }
 
         // se guarda en la cache de ser requerido
