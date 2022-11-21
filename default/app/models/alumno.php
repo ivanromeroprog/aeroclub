@@ -14,6 +14,11 @@ class Alumno extends ActiveRecord
         return $this->paginate("page: $page", "per_page: $ppage", 'order: id desc');
     }
 
+    public function getAlumnosTodos()
+    {
+        return $this->find();
+    }
+
     public function getAlumno($id)
     {
         return $this->find($id);

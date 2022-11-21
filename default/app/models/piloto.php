@@ -14,6 +14,11 @@ class Piloto extends ActiveRecord
         return $this->paginate("page: $page", "per_page: $ppage", 'order: id desc');
     }
 
+    public function getPilotosTodos($soloInstructores = false)
+    {
+        return $this->find('es_instructor = 1');
+    }
+
     public function getPiloto($id)
     {
         return $this->find($id);

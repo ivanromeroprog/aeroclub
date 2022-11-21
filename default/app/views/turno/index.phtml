@@ -6,19 +6,35 @@
         <h3 class="tituloCategoria">Turnos</h3>
         <i class="fa fa-plus-circle icono-categoria" aria-hidden="true"><?= Html::linkAction("alta/", ' Nuevo') ?></i>
     </div>
-
-    <table>
-        <th>Alumno o Piloto</th>
-        <th>ID Aeronave</th>
-        <th>Categoria</th>
-        <th>Hora de Inicio</th>
-        <th>Hora de Fin</th>
-        <th>Duracion</th>
-        <th colspan="2">Acciones</th>
-        <?php foreach ($listTurno->items as $Turno) : ?>
+    <?php
+    $id_aeronave_anterior = null;
+    $fecha_anterior = null;
+    ?>
+    <?php foreach ($listTurno->items as $Turno) : ?>
+        <?php if ($id_aeronave_anterior != $Turno->id_aeronave) : ?>
+            <h4>Aeronave: <?= $Turno->marca ?> - <?= $Turno->modelo ?></h4>
+        <?php endif ?>
+        <?php if ($fecha_anterior != $Turno->fecha) : ?>
+            <h5>Fecha: <?= $Turno->fecha ?></h5>
+        <?php endif ?>
+        <?php if ($id_aeronave_anterior != $Turno->id_aeronave || $fecha_anterior != $Turno->fecha) : ?>
+            <table>
+                <th>Alumno o Piloto</th>
+                <th>Categoria</th>
+                <th>Hora de Inicio</th>
+                <th>Hora de Fin</th>
+                <th>Duracion</th>
+                <th colspan="2">Acciones</th>
+            <?php endif ?>
             <tr>
-                <td><strong><?= $Turno->Alumno ?> </strong></td>
-                <td><strong> <?= $Turno->id_aeronave ?> </strong></td>
+                <td>
+                    <strong> <?=
+                                (!empty($Turno->alumno_apellido)) ?
+                                    $Turno->alumno_apellido . ', ' . $Turno->alumno_nombre  :
+                                    $Turno->piloto_apellido . ', ' . $Turno->piloto_nombre
+                                ?>
+                    </strong>
+                </td>
                 <td><strong> <?= $Turno->categoria ?> </strong></td>
                 <td><strong> <?= $Turno->hora_inicio ?> </strong></td>
                 <td><strong> <?= $Turno->hora_fin ?> </strong></td>
@@ -26,9 +42,14 @@
                 <td><?= Html::linkAction("modif/$Turno->id/", 'Editar') ?> </td>
                 <td><?= Html::linkAction("baja/$Turno->id/", 'Borrar') ?> </td>
             </tr>
-        <?php endforeach ?>
-    </table>
-
+            <?php if ($id_aeronave_anterior != $Turno->id_aeronave || $fecha_anterior != $Turno->fecha) : ?>
+            </table>
+        <?php endif ?>
+        <?php
+        $id_aeronave_anterior = $Turno->id_aeronave;
+        $fecha_anterior = $Turno->fecha;
+        ?>
+    <?php endforeach ?>
     <!-- ejemplo manual de paginador, hay partial listos en formato digg, clasic,.... -->
     <?php if ($listTurno->prev) echo Html::linkAction("index/$listTurno->prev/", '<< Anterior |') ?>
     <?php if ($listTurno->next) echo Html::linkAction("index/$listTurno->next/", 'Próximo >>') ?>

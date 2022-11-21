@@ -27,15 +27,53 @@ class TurnoController extends AppController
          * datos enviado por POST utilizando autocarga de objeto
          */
 
-        //var_dump($_POST);
-        //die();
+        $this->categorias = ['piloto' => 'Piloto', 'alumno' => 'Alumno'];
 
-        if (Input::hasPost('Turnos')) {
+        //Listas
+        //Aeronaves
+        $aeronaves = (new Aeronave())->getAeronavesTodos();
+        $this->aeronaves = [];
+        foreach ($aeronaves as $v) {
+            $this->aeronaves[$v->id] = $v->marca . ' - ' . $v->modelo . ' (' . $v->matricula . ')';
+        }
+
+        //Alumnos
+        $this->alumnos = [];
+        $alumnos = (new Alumno)->getAlumnosTodos();
+        foreach ($alumnos as $v) {
+            $this->alumnos[$v->id] = $v->apellido . ', ' . $v->nombre;
+        }
+
+        //Pilotos
+        $this->pilotos = [];
+        $pilotos = (new Piloto)->getPilotosTodos();
+        foreach ($pilotos as $v) {
+            $this->pilotos[$v->id] = $v->apellido . ', ' . $v->nombre;
+        }
+
+        if (Input::hasPost('seleccionar_categoria')) {
+            //1er Paso, seleccionar Categoria
+            $this->categoria_seleccionada = Input::post('Turnos.categoria');
+        } elseif (Input::hasPost('seleccionar_aeronave_fecha')) {
+            //2do Paso, seleccionar Aeronave y Fecha
+            $this->categoria_seleccionada = Input::post('Turnos.categoria');
+            //var_dump($_POST);
+
+            //TODO: verificar que la fecha sea válida
+            $this->fecha_seleccionada = Input::post('Turnos.fecha');
+            $this->aeronave_seleccionada = Input::post('Turnos.id_aeronave');
+
+            //TODO: obtener los turnos ya reservados para la aeronave o turno seleccionado para mostrarlos al usuario
+        } elseif (Input::hasPost('Turnos')) {
+            //3er Paso, guardar el turno
+
             /**
              * se le pasa al modelo por constructor los datos del form y ActiveRecord recoge esos datos
              * y los asocia al campo correspondiente siempre y cuando se utilice la convención
              * model.campo
              */
+
+            //TODO: Verificar que el turno sea válido antes de guardar
             $Turno = new Turno(Input::post('Turnos'));
             //En caso que falle la operación de guardar
             if ($Turno->create()) {

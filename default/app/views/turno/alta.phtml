@@ -5,20 +5,53 @@
         <?= Form::open(); // por defecto llama a la misma url 
         ?>
 
-        <label> Alumno o Piloto
-                <?= Form::number('Turnos.id_piloto') ?></label>
-        <label> Aeronave
-                <?= Form::number('Turnos.id_aeronave') ?></label>
-        <label>Categoria
-                <?= Form::text('Turnos.categoria') ?></label>
-        <label>Hora de Inicio
-                <?= Form::time('Turnos.hora_inicio') ?></label>
-        <label>Hora de Fin
-                <?= Form::time('Turnos.hora_fin') ?></label>
-        <label>Duracion
-                <?= Form::number('Turnos.duracion') ?></label>
+        <?php if (!isset($categoria_seleccionada)) : ?>
 
-        <?= Form::submit('Agregar') ?>
+                <label>Categoria
+                        <?= Form::select('Turnos.categoria', $categorias) ?></label>
+
+                <?= Form::submit('Siguiente', ['name' => 'seleccionar_categoria', 'value' => 'si']) ?>
+
+        <?php else : ?>
+
+                <h4>Turno para <?= $categoria_seleccionada ?></h4>
+                <?= Form::hidden('Turnos.categoria') ?>
+
+                <label> Aeronave
+                        <?= Form::select('Turnos.id_aeronave', $aeronaves) ?></label>
+
+                <label> Fecha
+                        <?= Form::date('Turnos.fecha',) ?></label>
+
+                <?php if (!isset($fecha_seleccionada) || !isset($aeronave_seleccionada)) : ?>
+
+                        <?= Form::submit('Siguiente', ['name' => 'seleccionar_aeronave_fecha', 'value' => 'si']) ?>
+
+                <?php else : ?>
+
+
+                        <?php if ($categoria_seleccionada == 'alumno') : ?>
+                                <label> Alumno
+                                        <?= Form::select('Turnos.id_alumno', $alumnos) ?></label>
+                        <?php endif ?>
+
+                        <label> <?= $categoria_seleccionada == 'alumno' ? 'Instructor' : 'Piloto' ?>
+                                <?= Form::select('Turnos.id_piloto', $pilotos) ?></label>
+
+                        <label>Hora de Inicio
+                                <?= Form::time('Turnos.hora_inicio') ?></label>
+                        <label>Hora de Fin
+                                <?= Form::time('Turnos.hora_fin') ?></label>
+                        <label>Duracion
+                                <?= Form::number('Turnos.duracion') ?></label>
+
+                        <?= Form::submit('Agregar') ?>
+
+                <?php endif ?>
+
+        <?php endif ?>
+
+        <p style="margin-top: 15px;"><?= Html::link('turno/alta/', 'Volver a comenzar') ?></p>
 
         <?= Form::close() ?>
 </div>
