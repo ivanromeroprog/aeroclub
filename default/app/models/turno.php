@@ -36,9 +36,12 @@ class Turno extends ActiveRecord
     }
 
     //recupera todos los Aeronaves
-    public function getTurnosTodos()
+    public function getTurnosTodos($id_aeronave = null, $fecha = null)
     {
-        return $this->find();
+        if (is_null($id_aeronave) || is_null($fecha))
+            return $this->find();
+        else
+            return $this->find('conditions: id_aeronave = ' . $id_aeronave . ' AND fecha = "' . $fecha . '"');
     }
 
     //contar Aeronaves

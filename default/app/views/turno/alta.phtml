@@ -40,12 +40,20 @@
 
                         <label>Hora de Inicio
                                 <?= Form::time('Turnos.hora_inicio') ?></label>
-                        <label>Hora de Fin
-                                <?= Form::time('Turnos.hora_fin') ?></label>
-                        <label>Duracion
-                                <?= Form::number('Turnos.duracion') ?></label>
+                        <!--                         
+                                <label>Hora de Fin
+                                <?= Form::time('Turnos.hora_fin') ?></label> -->
 
-                        <?= Form::submit('Agregar') ?>
+                        <label>Duracion
+                                <?= Form::number('Turnos.duracion', ['min' => '0', 'required' => 'required']) ?></label>
+
+
+                        <h5>Horarios ya ocupados</h5>
+                        <?php foreach ($horariosOcupados as $h) : ?>
+                                <p><?= $h->hora_inicio . ' a ' . $h->hora_fin; ?> Hs.</p>
+                        <?php endforeach ?>
+
+                        <?= Form::submit('Agregar', ['name' => 'agregar', 'value' => 'si']) ?>
 
                 <?php endif ?>
 

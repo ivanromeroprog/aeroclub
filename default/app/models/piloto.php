@@ -16,7 +16,10 @@ class Piloto extends ActiveRecord
 
     public function getPilotosTodos($soloInstructores = false)
     {
-        return $this->find('es_instructor = 1');
+        if ($soloInstructores)
+            return $this->find('conditions: es_instructor = 1');
+        else
+            return $this->find();
     }
 
     public function getPiloto($id)
